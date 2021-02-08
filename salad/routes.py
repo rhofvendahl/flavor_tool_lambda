@@ -1,6 +1,6 @@
 # TODO resolve "clashing" thing
 
-from flask import Flask, render_template, request, jsonify, redirect, url_for, Blueprint
+from flask import Flask, render_template, request, jsonify, redirect, url_for, Blueprint, make_response, json
 blueprint  = Blueprint('salad', __name__, url_prefix='/salad', template_folder='templates', static_folder='static/salad')
 
 import pandas as pd
@@ -9,6 +9,7 @@ import os
 import random
 import pickle
 import time
+import gzip
 
 root_path = os.getcwd()
 salad_flavor_data = pd.read_pickle(os.path.join(root_path, 'data/salad_flavor_data.pickle'))
@@ -19,13 +20,17 @@ def index():
 
 @blueprint.route('/get-ingredients', methods=['GET'])
 def get_ingredients():
-    salad_ingredients = [
+    ingredients = [
         {
             col_name: row[col_name]
         for col_name in salad_flavor_data.columns.tolist()}
     for i, row in salad_flavor_data.iterrows()]
-    # print(salad_flavor_data.columns.tolist())
-    return jsonify(salad_ingredients)
+
+    content = gzip.compress(json.dumps(ingredients).encode('utf8'), 5)
+    response = make_response(content)
+    response.headers['Content-Length'] = len(content)
+    response.headers['Content-Encoding'] = 'gzip'
+    return response
 
 @blueprint.route('/generate', methods=['POST'])
 def generate():
