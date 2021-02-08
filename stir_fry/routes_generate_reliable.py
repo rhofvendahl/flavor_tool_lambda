@@ -210,7 +210,7 @@ def generate_reliable():
 
     top_score = None
     n_iterations = 250
-    max_seconds = 12
+    max_seconds = 15
 
     n = 0
     start = time.time()
