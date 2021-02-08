@@ -209,12 +209,13 @@ def generate_reliable():
     ok_cliques = ok_cliques.sort_values('ok_score', ascending=False)
 
     top_score = None
-    n_iterations = 200
+    n_iterations = 250
+    max_seconds = 12
 
     n = 0
     start = time.time()
     for iteration in range(n_iterations):
-        if time.time() - start > 15:
+        if time.time() - start > max_seconds:
             print("OOPS! Time's up. " + str(n) + ' iterations completed.')
             break
         n += 1
@@ -502,6 +503,7 @@ def generate_reliable():
     if top_score:
         data = {
             'outcome': 'success',
+            'n_iterations': n,
             'data': {
                 'present_names': present_names,
                 'locked_names': locked_names,

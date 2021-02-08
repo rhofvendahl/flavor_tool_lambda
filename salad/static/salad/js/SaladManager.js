@@ -247,7 +247,8 @@ var SaladManager = function() {
             $('#about-window').show();
             self.saveToLocalStorage('abouted', true);
         }
-        fetch('/salad/get-ingredients', {
+        // Url passed in through index.html
+        fetch(getIngredientsUrl, {
             credentials: 'include',
             method: 'GET',
             headers: {

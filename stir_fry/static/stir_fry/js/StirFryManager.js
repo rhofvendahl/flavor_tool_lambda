@@ -262,8 +262,8 @@ var StirFryManager = function() {
             $('#about-window').show();
             self.saveToLocalStorage('abouted', true);
         }
-        // TEMPORARY /DEV PREFIX
-        fetch('/dev/stir-fry/get-ingredients', {
+        // Url passed in through index.html
+        fetch(getIngredientsUrl, {
             credentials: 'include',
             method: 'GET',
             headers: {
@@ -702,8 +702,8 @@ var StirFryManager = function() {
             $('#generating').show();
             self.default_method = method;
 
-            // TEMPORARY /DEV PREFIX
-            url = (method == 'fun') ? '/dev/stir-fry/generate-fun' : '/dev/stir-fry/generate-reliable';
+            // Urls passed in through index.html
+            url = (method == 'fun') ? generateFunUrl : generateReliableUrl;
             fetch(url, {
                 credentials: 'include',
                 method: 'POST',
@@ -729,6 +729,7 @@ var StirFryManager = function() {
                 self.generating = false;
 
                 if (json['outcome'] == 'success') {
+                    console.log('n_iterations: ', json['n_iterations']);
                     // console.log('dealing with json')
                     var presentNames = json['data']['present_names'];
                     var selectedNames = json['data']['selected_names'];

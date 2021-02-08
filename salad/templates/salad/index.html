@@ -10,6 +10,9 @@
     <link href='{{ url_for('salad.static', filename='css/style.css') }}' rel='stylesheet' type='text/css' />
     <link rel='shortcut icon' href='{{ url_for('static', filename='img/favicon.ico') }}'>
 
+    <script>
+        var getIngredientsUrl = '{{ url_for('salad.get_ingredients') }}';
+    </script>
     <script type='text/javascript' src='//code.jquery.com/jquery-3.2.1.min.js'></script>
     <script type='text/javascript' src='//stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js'></script>
     <script type='text/javascript' src='{{ url_for('static', filename='js/lib/vis-network.min.js') }}'></script>
