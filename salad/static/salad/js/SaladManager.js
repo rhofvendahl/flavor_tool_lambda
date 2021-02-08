@@ -248,7 +248,11 @@ var SaladManager = function() {
             self.saveToLocalStorage('abouted', true);
         }
         fetch('/salad/get-ingredients', {
-            method: 'get'
+            credentials: 'include',
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+            }
         }).then(function(response) {
             if (!response.ok) {
                 throw Error(response.statusText);

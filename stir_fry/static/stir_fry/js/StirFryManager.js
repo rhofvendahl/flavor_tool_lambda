@@ -263,7 +263,11 @@ var StirFryManager = function() {
             self.saveToLocalStorage('abouted', true);
         }
         fetch('/stir-fry/get-ingredients', {
-            method: 'get'
+            credentials: 'include',
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
+            }
         }).then(function(response) {
             if (!response.ok) {
                 throw Error(response.statusText);
@@ -698,7 +702,8 @@ var StirFryManager = function() {
             self.default_method = method;
             url = (method == 'fun') ? '/stir-fry/generate-fun' : '/stir-fry/generate-reliable';
             fetch(url, {
-                method: 'post',
+                credentials: 'include',
+                method: 'POST',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
