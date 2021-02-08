@@ -262,7 +262,8 @@ var StirFryManager = function() {
             $('#about-window').show();
             self.saveToLocalStorage('abouted', true);
         }
-        fetch('/stir-fry/get-ingredients', {
+        // TEMPORARY /DEV PREFIX
+        fetch('/dev/stir-fry/get-ingredients', {
             credentials: 'include',
             method: 'GET',
             headers: {
@@ -700,7 +701,9 @@ var StirFryManager = function() {
             self.generating = true;
             $('#generating').show();
             self.default_method = method;
-            url = (method == 'fun') ? '/stir-fry/generate-fun' : '/stir-fry/generate-reliable';
+
+            // TEMPORARY /DEV PREFIX
+            url = (method == 'fun') ? '/dev/stir-fry/generate-fun' : '/dev/stir-fry/generate-reliable';
             fetch(url, {
                 credentials: 'include',
                 method: 'POST',
