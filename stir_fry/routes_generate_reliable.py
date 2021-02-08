@@ -504,6 +504,7 @@ def generate_reliable():
         data = {
             'outcome': 'success',
             'n_iterations': n,
+            'time_generating': time.time() - start,
             'data': {
                 'present_names': present_names,
                 'locked_names': locked_names,

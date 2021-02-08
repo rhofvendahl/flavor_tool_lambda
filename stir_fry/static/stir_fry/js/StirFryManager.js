@@ -730,6 +730,7 @@ var StirFryManager = function() {
 
                 if (json['outcome'] == 'success') {
                     console.log('n_iterations: ', json['n_iterations']);
+                    console.log('time-generating: ', json['time_generating']);
                     // console.log('dealing with json')
                     var presentNames = json['data']['present_names'];
                     var selectedNames = json['data']['selected_names'];
